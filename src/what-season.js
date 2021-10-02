@@ -14,9 +14,7 @@ import { NotImplementedError } from '../extensions/index.js';
 export default function getSeason(date) {
   if (!date) return 'Unable to determine the time of year!';
 
-  let test1 = date.toString;
-  let test2 = Date.parse(test1)
-  if (!isNaN(test2)) return 'Invalid date!' 
+  if (!(date instanceof Date)) throw new Error('Invalid date!');
 
   let month = date.getMonth()
 
@@ -26,16 +24,3 @@ export default function getSeason(date) {
   if (month >= 8 && month <= 10) return 'autumn';
 }
 
-// let d = new Date(22, 8, 22, 3, 0, 11, 500);
-
-// // d = 'hi'
-
-// let m = d.toString()
-
-// console.log('toString: ' + m)
-
-// let n = Date.parse(m)
-
-// console.log('Date.parse: ' + n)
-
-// console.log(isNaN(n))

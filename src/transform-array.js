@@ -19,58 +19,33 @@ export default function transform(arr) {
   let resultArr = [];
 
   for (let i = 0; i < arr.length; i++) {
-    switch(arr[i]) {
-      case '--discard-next':
-        i += 1;
-        continue;
+    // console.log('Начали работу с эл-том: ' + arr[i])
 
-      case '--discard-prev':
-        resultArr.pop();
-        continue;
+    if (arr[i] == '--discard-next') {
+      // console.log('След эл-т будет удален')
+      i++
+    
+    } else if (arr[i] == '--discard-prev') { 
+      if (i == 0) continue;
+      // console.log('Пред эл-т будет удален')
+      resultArr.pop()
 
-      case '--double-next':
-        resultArr.push(arr[i+1])
-        continue;
+    } else if (arr[i] == '--double-next') {
+      // console.log('След эл-т будет удвоен')
+      resultArr.push(arr[i + 1])
 
-      case '--double-prev':
-        if (i = 0) {
-         continue;
-        }
-        resultArr.push(resultArr[resultArr.length - 1])
-        
-      default: resultArr.push(arr[i])
+    } else if (arr[i] == '--double-prev') {
+      // console.log('Пред эл-т будет удовен')
+      resultArr.push(resultArr[resultArr.length - 1])
+
+    } else {
+      resultArr.push(arr[i])
     }
-
-
-
-    // if (arr[i] == '--discard-next') {
-    //   i += 1;
-
-    // } else if (arr[i] == '--discard-prev') {
-    //   resultArr.pop()
-
-    // } else if (arr[i] == '--double-next') {
-    //   resultArr.push(arr[i+1])
-
-    // } else if (arr[i] == '--double-prev') {
-    //   if (i = 0) {
-    //     continue;
-    //   } else {
-    //   resultArr.push(resultArr[resultArr.length - 1])
-    //   }
-    // } else {
-    //   resultArr.push(arr[i])
-    // }
   }
+  // console.log('Изначальный массив: ' + arr)
   return resultArr;
 }
 
-let test = [1, 2, 3, '--discard-next', 1337, '--double-prev', 4, 5]
+// let test = [1, 2, 3, '--discard-next', 1337, '--double-prev', 4, 5]
 
-// // console.log(test[3])
-
-// let newArr = []
-
-// newArr.pop()
-
-console.log(transform(test))
+// console.log(transform(test))

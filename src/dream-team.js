@@ -21,5 +21,5 @@ export default function createDreamTeam(members) {
     let letter = members[i].trim().toUpperCase();
     test.push(letter[0]);
   }
-  return test.sort().join();
+  return test.sort().join('');
 }

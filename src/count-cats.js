@@ -14,12 +14,18 @@ import { NotImplementedError } from '../extensions/index.js';
  * ]) => 3`
  *
  */
-export default function countCats(backyard) {
+export default function countCats(matrix) {
   let cats = 0;
-  for (let i = 0; i < backyard.length; i++) {
-    for (let j = 0; j < i.length; j++) {
-      if (j == '^^') cats +=1
+  for (let i = 0; i < matrix.length; i++) {
+    let newArr = matrix[i];
+    for (let j = 0; j < newArr.length; j++) {
+      if (typeof(newArr[j]) != 'string') {
+        continue
+      }
+      if (newArr[j].length == 2 && newArr[j].includes('^^')) {
+        cats += 1;
+      }
     }
   }
-  return cats
+  return cats;
 }

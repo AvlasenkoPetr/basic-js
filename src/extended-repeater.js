@@ -23,6 +23,8 @@ export default function repeater(str, options) {
     let arr = []; 
     arr.push(options.addition);
 
+    console.log(arr)
+
     if (options.additionRepeatTimes) {
       arr.length = options.additionRepeatTimes
       arr.fill(options.addition) 
@@ -32,9 +34,12 @@ export default function repeater(str, options) {
       } else {
         resultAdd = arr.join('|')
       }
+    } else {
+      resultAdd = arr.pop()
     }
 
     strToRepeat = str + resultAdd
+
   }
 
   let resultStr
@@ -50,6 +55,8 @@ export default function repeater(str, options) {
     } else {
       resultStr = newArr.join('+')
     }
+  } else {
+     resultStr = strToRepeat
   }
 
   return resultStr
@@ -63,8 +70,8 @@ let obj = {
   additionSeparator: '**',
 };
 
-let obj1 = { repeatTimes: 5 }
+let obj1 = { separator: 'ds', addition: 'ADD!', additionSeparator: ')))000' }
 
-let str = 'la'
+let str = 'TESTstr'
 
 console.log(repeater(str, obj1))

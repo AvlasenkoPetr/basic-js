@@ -15,7 +15,56 @@ import { NotImplementedError } from '../extensions/index.js';
  * => 'STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS'
  *
  */
-export default function repeater(/* str, options */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function repeater(str, options) { 
+  let strToRepeat = str;
+  
+  if (options.addition) {
+    let resultAdd
+    let arr = []; 
+    arr.push(options.addition);
+
+    if (options.additionRepeatTimes) {
+      arr.length = options.additionRepeatTimes
+      arr.fill(options.addition) 
+
+      if (options.additionSeparator) {
+        resultAdd = arr.join(options.additionSeparator)
+      } else {
+        resultAdd = arr.join('|')
+      }
+    }
+
+    strToRepeat = str + resultAdd
+  }
+
+  let resultStr
+
+  if(options.repeatTimes){
+    let newArr = [];
+    newArr.push(strToRepeat);
+    newArr.length = options.repeatTimes;
+    newArr.fill(strToRepeat)
+
+    if(options.separator){
+      resultStr = newArr.join(options.separator)
+    } else {
+      resultStr = newArr.join('+')
+    }
+  }
+
+  return resultStr
 }
+
+let obj = {
+  repeatTimes: 2,
+  separator: '--',
+  addition: 'sup',
+  additionRepeatTimes: 3,
+  additionSeparator: '**',
+};
+
+let obj1 = { repeatTimes: 5 }
+
+let str = 'la'
+
+console.log(repeater(str, obj1))
